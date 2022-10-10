@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>{% block title %} Available Cars {% endblock %}</h1>
+    <hr>
+    {% for a_car, car in join %}
+        <h2> {{ car["make"] }} </h2>
+        <h4> {{ car['model'] }} </h4>
+        <p> {{ a_car['licencePlateNum'] }} </p>
+        <img src={{ car['carImage'] }} alt={{ car["make"] }},{{ car['model'] }}>
+        <p>Engine Type: {{ car['engineType'] }}</p>
+        <p>Seats:{{ car['seats'] }}</p>
+        <hr>
+    {% endfor %}
+    <h2>{{ linked }}</h2>
+{% endblock %}

@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <table id="data" class="table table-striped">
+    <thead>
+      <tr>
+        <th>Car id</th>
+        <th>Car Make</th>
+        <th>Car Model</th>
+        <th>Number of seats</th>
+        <th>Engine Type</th>
+        <th>Autonomy</th>
+        <th>Image</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% set sort_on = request.args.sort_on|default(car_id) %}
+      {% for car in cars |sort(attribute=sort_on) %}
+        <tr>
+          <td>{{ car.car_id}}</td>
+          <td>{{ car.make }}</td>
+          <td>{{ car.model }}</td>
+          <td>{{ car.seats }}</td>
+          <td>{{ car.engineType }}</td>
+          <td>{{ car.currentAutonomy }}</td>
+          <img src={{ car.carImage}} alt={{ car.car_id}} width="40" height="70">
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}
